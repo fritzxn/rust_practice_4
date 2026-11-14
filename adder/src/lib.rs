@@ -48,7 +48,7 @@ mod tests {
 
  */
 pub fn add_two(a: u64) -> u64 {
-    a + 3
+    a + 2
 }
 
 /* #[cfg(test)]
@@ -118,7 +118,7 @@ mod tests {
 
  */
 
- impl Guess {
+ /* impl Guess {
     pub fn new(value:i32) -> Guess {
         if value > 1 {
             panic!("nope");
@@ -139,7 +139,7 @@ mod tests {
         Guess::new(200);
     }
 }
-
+ */
 /* #[cfg(test)]
 mod tests {
     use super::*;
@@ -156,3 +156,48 @@ mod tests {
     }
 } */
 
+
+
+
+/* fn prints(a: i32) -> i32 {
+    println!("{a}");
+    10
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn pass() {
+        let value = prints(2);
+        assert_eq!(value, 10);
+}
+    #[test]
+    #[ignore]
+    fn fails() {
+        let value = prints(3);
+        assert_eq!(value, 4);
+    }
+}
+
+//If we want to run only the ignored tests, we can use cargo test -- --ignored
+//If you want to run all tests whether they’re ignored or not, you can run cargo test -- --include-ignored.
+ */
+
+
+
+fn internal_adder(left: u64, right: u64) -> u64 {
+    left + right
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn internal() {
+        let result = internal_adder(2, 2);
+        assert_eq!(result, 4);
+    }
+}

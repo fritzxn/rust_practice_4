@@ -1,4 +1,1 @@
-    Checking rust_practice_4 v0.1.0 (/home/fritz/Downloads/RustParentFolder/rust_practice_4)
-error: could not compile `rust_practice_4` (bin "rust_practice_4" test) due to 2 previous errors
-warning: build failed, waiting for other jobs to finish...
-error: could not compile `rust_practice_4` (bin "rust_practice_4") due to 2 previous errors
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.00s
