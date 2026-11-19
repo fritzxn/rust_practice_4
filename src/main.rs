@@ -24,6 +24,6 @@ fn main() {
 
     let y = 2;
 
-    assert!(doubled(y));
+    assert!(doubled(y)); 
 
 }
