@@ -14,16 +14,93 @@
 //other crates can use; binary crates are meant to be run on 
 //their own.
 
+use std::thread;
+
 //----------------------------------
 //closures
+#[derive(Debug, PartialEq, Copy, Clone)]
+enum ShirtColor {
+    Red,
+    Blue,
+}
+
+struct Inventory {
+    shirts: Vec<ShirtColor>,
+}
+
+impl Inventory {
+    fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
+        user_preference.unwrap_or_else(|| self.most_stocked())
+    }
+
+    fn most_stocked(&self) -> ShirtColor {
+        let mut num_red = 0;
+        let mut num_blue = 0;
+
+        for color in &self.shirts {
+            match color {
+                ShirtColor::Red => num_red += 1,
+                ShirtColor::Blue => num_blue += 1,
+            }
+        }
+        if num_red > num_blue {
+            ShirtColor::Red
+        } else {
+            ShirtColor::Blue
+        }
+    }
+}
 
 fn main() {
-    let x = 2;
+    let store = Inventory {
+        shirts: vec![ShirtColor::Red, ShirtColor::Blue, ShirtColor::Blue]
+    };
 
-    let doubled = |z| z == x;
+    let user_pref1 = Some(ShirtColor::Red);
+    let giveaway1 = store.giveaway(user_pref1);
+    println!("the user with preference {:?} gets {:?}",
+        user_pref1, giveaway1);
 
-    let y = 2;
+    let user_preference2 = None;
+    let giveaway2 = store.giveaway(user_preference2);
+    println!("user with preference {:?} gets {:?}",
+        user_preference2, giveaway2);
 
-    assert!(doubled(y)); 
+
+        let list = vec![1,2,3,4,5];
+        println!(" this is {list:?}");
+
+        let only_borrows = || println!("{list:?}");
+        println!("before calling {list:?}");
+
+        only_borrows();
+
+    let mut list = vec![1,2,3,4,];
+    println!("this is {list:?}");
+
+    let mut borrows_mutably = || list.push(7);
+
+    borrows_mutably();
+    println!("borrows here {list:?}");
+
+    let list = vec![1,2,3];
+    println!("nefore deifinig closure {list:?}");
+
+    thread::spawn(move || println!("" from thread {list:?}))
+    .join()
+    .unwrap();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
