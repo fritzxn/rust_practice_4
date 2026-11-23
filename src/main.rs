@@ -90,7 +90,7 @@ fn main() {
     .join()
     .unwrap();
 
-
+//still leaning closures in detail from youtube
 
 
 
