@@ -14,7 +14,7 @@
 //other crates can use; binary crates are meant to be run on 
 //their own.
 
-use std::thread;
+/* use std::thread;
 
 //----------------------------------
 //closures
@@ -92,6 +92,17 @@ fn main() {
 
 //still leaning closures in detail from youtube
 
+impl<T> Option<T> {
+    pub fn unwrap_or_else<F>(self, f: F) -> T
+    where 
+        F: FnOnce() -> T
+    {
+        match self {
+            Some(x) => x,
+            None => f(),
+        }
+    }
+}
 
 
 
@@ -103,4 +114,21 @@ fn main() {
 
 
 
+}
+ */
+#[derive(Debug)]
+struct Rectangle {
+    height: u32,
+    width: u32,
+}
+
+fn main() {
+    let mut list = [
+        Rectangle {width: 10, height: 1},
+        Rectangle {width:3, height: 5},
+        Rectangle {width: 7, height: 12},
+    ];
+
+    list.sort_by_key(|r| r.width);
+    println!("{list:#?}");
 }
